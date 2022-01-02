@@ -115,7 +115,7 @@ class Parser(FileReader):
         return header_dict['date'].strftime(DATETIME_FORMAT)
 
     def get_email_body_contents(self, body_dict: dict):
-        return BeautifulSoup(body_dict['content'], 'html.parser').text.replace(u'\xa0', u' ')
+        return BeautifulSoup(body_dict['content'], 'html.parser').get_text(strip=True)
 
     def get_email_attachment(self, attachment_list: list):
         attachments = {'body_image': [], 'attachment_image_raw': [], 'attachment_file_raw': []}
